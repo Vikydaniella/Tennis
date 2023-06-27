@@ -28,17 +28,18 @@ class TennisController extends Controller
             'tournament_point' =>$request->tournament_point,
             'number_of_players' => $request->number_of_players
         ]);
-        if ($request = $tennis);
-        return response()->json([
-            'status' => '201',
-            'message' => 'Tournament created successfully',
-            'tennis' => $tennis,
-        ]);
-        return response()->json([
-            'status' => '406',
-            'message' => 'Can not create tournament',
-            'tennis' => $tennis,
-        ]);
+        if ($tennis){
+            return response()->json([
+                'status' => 201,
+                'message' => 'Tournament created successfully',
+                'data' => $tennis
+            ]);
+    }
+    
+     return response()->json([
+                'status' => 500,
+                'message' => 'Can not create tournament'
+            ]);    
     }
 
     public function show(Tennis $tennis, $id)
@@ -56,14 +57,15 @@ class TennisController extends Controller
             'number_of_players' => $request->number_of_players
             
         ]);
-        if ($request = $tennis)
+        if ($tennis){
         return response()->json([
             'status' => '205',
             'message' => 'Tournament updated successfully',
             'tennis' => $tennis,
         ]);
+    }
         return response()->json([
-            'status' => '409',
+            'status' => '500',
             'message' => 'Can not update tournament',
             'tennis' => $tennis,
         ]);
@@ -73,13 +75,15 @@ class TennisController extends Controller
     {
         $tennis = Tennis::findOrFail($id);
         $tennis->delete();
+        if ($tennis){
         return response()->json([
             'status' => '204',
             'message' => 'Tournament deleted successfully',
             'tennis' => $tennis,
         ]);
+    }
         return response()->json([
-            'status' => '409',
+            'status' => '500',
             'message' => 'Can not delete tournament',
             'tennis' => $tennis,
         ]);
