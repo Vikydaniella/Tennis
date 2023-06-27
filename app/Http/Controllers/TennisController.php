@@ -21,9 +21,7 @@ class TennisController extends Controller
     public function store(TennisRequest $request)
     {   
         $tennis = Tennis::create([
-            'tournament_name' =>$request->tournament_name,
-            'tournament_point' =>$request->tournament_point,
-            'number_of_players' => $request->number_of_players
+            $request->id
         ]);
         if ($tennis){
             return response()->json([
@@ -32,7 +30,6 @@ class TennisController extends Controller
                 'data' => $tennis
             ]);
     }
-    
         return response()->json([
                 'status' => 500,
                 'message' => 'Can not create tournament'
@@ -43,7 +40,11 @@ class TennisController extends Controller
     {
        $tennis = Tennis::findOrFail($id);
        if($tennis){
-            return new TennisResource($tennis);
+            return response()->json([
+            'status' => 200,
+            'message' => 'Successfully',
+            'data' => $tennis,
+            ]);
         }
     }
 
@@ -52,20 +53,17 @@ class TennisController extends Controller
         $tennis = Tennis::findOrFail($id);
         if($tennis){
             $tennis->update([
-                'tournament_name' =>$request->tournament_name,
-                'tournament_point' =>$request->tournament_point,
-                'number_of_players' => $request->number_of_players
+                $request->id
             ]);
             return response()->json([
             'status' => 200,
             'message' => 'Tournament updated successfully',
-            'tennis' => $tennis,
+            'data' => $tennis,
             ]);
     }
         return response()->json([
             'status' => 500,
             'message' => 'Can not update tournament',
-            'tennis' => $tennis,
         ]);
     }
 
@@ -77,13 +75,12 @@ class TennisController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => 'Tournament deleted successfully',
-                'tennis' => $tennis,
+                'data' => $tennis,
             ]);
     }
         return response()->json([
             'status' => 500,
             'message' => 'Can not delete tournament',
-            'tennis' => $tennis,
         ]);
     }
 }
