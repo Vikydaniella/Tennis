@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Tennis;
 use App\Http\Requests\TennisRequest;
 use App\Http\Resources\TennisResource;
-use App\Http\Requests\StoreTennisRequest;
-use App\Http\Requests\UpdateTennisRequest;
-
 
 class TennisController extends Controller
 {
@@ -30,13 +27,13 @@ class TennisController extends Controller
         ]);
         if ($tennis){
             return response()->json([
-                'status' => 201,
+                'status' => 200,
                 'message' => 'Tournament created successfully',
                 'data' => $tennis
             ]);
     }
     
-     return response()->json([
+        return response()->json([
                 'status' => 500,
                 'message' => 'Can not create tournament'
             ]);    
@@ -45,27 +42,28 @@ class TennisController extends Controller
     public function show(Tennis $tennis, $id)
     {
        $tennis = Tennis::findOrFail($id);
-       return new TennisResource($tennis);
+       if($tennis){
+            return new TennisResource($tennis);
+        }
     }
 
     public function update(TennisRequest $request, Tennis $tennis, $id)
     {
         $tennis = Tennis::findOrFail($id);
-        $tennis->update([
-            'tournament_name' =>$request->tournament_name,
-            'tournament_point' =>$request->tournament_point,
-            'number_of_players' => $request->number_of_players
-            
-        ]);
-        if ($tennis){
-        return response()->json([
-            'status' => '205',
+        if($tennis){
+            $tennis->update([
+                'tournament_name' =>$request->tournament_name,
+                'tournament_point' =>$request->tournament_point,
+                'number_of_players' => $request->number_of_players
+            ]);
+            return response()->json([
+            'status' => 200,
             'message' => 'Tournament updated successfully',
             'tennis' => $tennis,
-        ]);
+            ]);
     }
         return response()->json([
-            'status' => '500',
+            'status' => 500,
             'message' => 'Can not update tournament',
             'tennis' => $tennis,
         ]);
@@ -74,16 +72,16 @@ class TennisController extends Controller
     public function destroy(Tennis $tennis, $id)
     {
         $tennis = Tennis::findOrFail($id);
-        $tennis->delete();
         if ($tennis){
-        return response()->json([
-            'status' => '204',
-            'message' => 'Tournament deleted successfully',
-            'tennis' => $tennis,
-        ]);
+            $tennis->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Tournament deleted successfully',
+                'tennis' => $tennis,
+            ]);
     }
         return response()->json([
-            'status' => '500',
+            'status' => 500,
             'message' => 'Can not delete tournament',
             'tennis' => $tennis,
         ]);
