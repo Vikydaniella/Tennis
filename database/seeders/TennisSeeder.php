@@ -8,7 +8,7 @@ class TennisSeeder extends Seeder
 {
     public function run()
     {
-        \App\Models\Tennis::factory(5)->create();
+        \App\Models\Tennis::factory(1)->create();
 
     }
 }

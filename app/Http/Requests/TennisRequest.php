@@ -24,9 +24,9 @@ class TennisRequest extends FormRequest
     public function rules()
     {
         return [
-            'tournament_name'=> 'required|max:255',
-            'tournament_point'=> 'required|max:255',
-            'number_of_players'=> 'required|max:255'
+            'tournament_name'=> 'required|string|max:20',
+            'tournament_point'=> 'required|integer|max:20',
+            'number_of_players'=> 'required|integer|max:2'
         ];
     }
 }

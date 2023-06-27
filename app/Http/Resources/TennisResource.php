@@ -10,13 +10,13 @@ class TennisResource extends JsonResource
     {
         return [
             'id' => (string)$this->id,
-            'id' => 'Tennis',
+            'type' => 'Tennis',
             'attributes'=> [
                 'tournament_name'=> $this->tournament_name,
                 'tournament_point'=> $this->tournament_point,
-                'number_of_players'=> $this->number_0f_players,
+                'number_of_players'=> $this->number_of_players,
                 'created_at'=> $this->created_at,
-                'updated_at'=> $this->updated_at,
+                'updated_at'=> $this->updated_at
             ]];
     }
 }
