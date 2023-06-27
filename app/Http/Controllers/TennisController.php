@@ -19,8 +19,6 @@ class TennisController extends Controller
     public function index()
     {
         return TennisResource::collection(Tennis::all());
-
-
     }
 
     public function store(TennisRequest $request)
@@ -30,46 +28,59 @@ class TennisController extends Controller
             'tournament_point' =>$request->tournament_point,
             'number_of_players' => $request->number_of_players
         ]);
-        
-        //return new TennisResource($tennis);
+        if ($request = $tennis);
         return response()->json([
-            'status' => 'success',
+            'status' => '201',
             'message' => 'Tournament created successfully',
+            'tennis' => $tennis,
+        ]);
+        return response()->json([
+            'status' => '406',
+            'message' => 'Can not create tournament',
             'tennis' => $tennis,
         ]);
     }
 
     public function show(Tennis $tennis, $id)
     {
-       $tennis = Tennis::find($id);
+       $tennis = Tennis::findOrFail($id);
        return new TennisResource($tennis);
     }
 
     public function update(TennisRequest $request, Tennis $tennis, $id)
     {
-        $tennis = Tennis::find($id);
+        $tennis = Tennis::findOrFail($id);
         $tennis->update([
             'tournament_name' =>$request->tournament_name,
             'tournament_point' =>$request->tournament_point,
             'number_of_players' => $request->number_of_players
             
         ]);
-        //return new TennisResource($tennis);
+        if ($request = $tennis)
         return response()->json([
-            'status' => 'success',
+            'status' => '205',
             'message' => 'Tournament updated successfully',
+            'tennis' => $tennis,
+        ]);
+        return response()->json([
+            'status' => '409',
+            'message' => 'Can not update tournament',
             'tennis' => $tennis,
         ]);
     }
 
     public function destroy(Tennis $tennis, $id)
     {
-        $tennis = Tennis::find($id);
+        $tennis = Tennis::findOrFail($id);
         $tennis->delete();
-        return response(null, 204);
         return response()->json([
-            'status' => 'success',
+            'status' => '204',
             'message' => 'Tournament deleted successfully',
+            'tennis' => $tennis,
+        ]);
+        return response()->json([
+            'status' => '409',
+            'message' => 'Can not delete tournament',
             'tennis' => $tennis,
         ]);
     }
