@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TennisController;
 use App\Http\Controllers\PointsController;
 use App\Http\Controllers\ResultsController;
+use App\Mail\MyTestEmail;
+use Illuminate\Support\Facades\Mail;
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -39,3 +41,8 @@ Route::controller(ResultsController::class)->group(function () {
     Route::put('results/{id}', 'update');
     Route::delete('results/{id}', 'destroy');
 }); 
+
+Route::get('/testroute', function() {
+    $name = "Funny Coder";
+    Mail::to('testreceiver@gmail.com’')->send(new Mailable($name));
+});

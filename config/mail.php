@@ -115,4 +115,14 @@ return [
         ],
     ],
 
+    
+
+    return [
+    'mailers' => [
+            'mailtrap' => [
+                'transport' => 'mailtrap'
+            ],
+    ]
+];
+
 ];

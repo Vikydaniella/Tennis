@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Points extends Model
 {
     use HasFactory;
+    protected $fillable = ['tournament_name', 'win_points','draw_points', 'loss_point'];
 }
