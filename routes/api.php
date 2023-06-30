@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TennisController;
 use App\Http\Controllers\PointsController;
 use App\Http\Controllers\ResultsController;
-use App\Mail\MyTestEmail;
+use App\Mail\FriendRequest;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -43,6 +43,6 @@ Route::controller(ResultsController::class)->group(function () {
 }); 
 
 Route::get('/testroute', function() {
-    $name = "Funny Coder";
-    Mail::to('testreceiver@gmail.com’')->send(new Mailable($name));
+    $name = "Friend Request";
+    Mail::to('user{id}’')->send(new FriendRequest($name));
 });

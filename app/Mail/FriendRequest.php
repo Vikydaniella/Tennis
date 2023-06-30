@@ -8,12 +8,14 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Envelope;
- 
-/**
-* Get the message envelope.
-*
-* @return \Illuminate\Mail\Mailables\Envelope
-*/
+use App\Models\User;
+
+class FriendRequest extends Mailable
+{
+    use Queueable, SerializesModels;
+
+public $user;
+
 public function envelope()
 {
    return new Envelope(
@@ -22,27 +24,17 @@ public function envelope()
    );
 }
 
-class FriendRequest extends Mailable
-{
-    use Queueable, SerializesModels;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user =$user;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
+    
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from('user{id}')
+                    ->with([
+                        'email' => $this->user->email,
+                    ]);
     }
 }
