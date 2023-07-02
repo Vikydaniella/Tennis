@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
@@ -16,25 +15,27 @@ class FriendRequest extends Mailable
 
 public $user;
 
-public function envelope()
+/*public function envelope()
 {
    return new Envelope(
-       from: new Address('example@example.com', 'Test Sender'),
-       subject: 'Test Email',
+       from: new Address('Auth::user()->emai', 'Auth::user()->name'),
+       subject: 'Invitation to Tournament',
    );
-}
+}*/
 
     public function __construct(User $user)
     {
         $this->user =$user;
     }
 
-    
     public function build()
     {
-        return $this->from('user{id}')
+        return $this->from($this->user->email)
+                    ->to('Auth::user()->emai')
                     ->with([
-                        'email' => $this->user->email,
+                        'userName' => $this->user->name,
+                        'userEmail' => $this->user->email,
                     ]);
+                    
     }
 }

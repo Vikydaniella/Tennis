@@ -6,12 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTennisPointsResultsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    /*ßpublic function up()
     {
         Schema::create('tennis_points_results', function (Blueprint $table) {
             $table->unsignedBigInteger('tennis_id');
@@ -32,8 +27,8 @@ class CreateTennisPointsResultsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    /*public function down()
     {
         Schema::dropIfExists('tennis_points_results');
-    }
+    }*/
 }

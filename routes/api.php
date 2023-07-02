@@ -41,8 +41,10 @@ Route::controller(ResultsController::class)->group(function () {
     Route::put('results/{id}', 'update');
     Route::delete('results/{id}', 'destroy');
 }); 
-
-Route::get('/testroute', function() {
-    $name = "Friend Request";
-    Mail::to('user{id}’')->send(new FriendRequest($name));
+Route::controller(FriendController::class)->group(function () {
+    Route::get('/friendrequest', 'index');
+    Route::post('friendrequest', 'store');
+    Route::get('friendrequest/{id}', 'show');
+    Route::put('friendrequest/{id}', 'update');
+    Route::delete('friendrequest/{id}', 'destroy');
 });

@@ -10,7 +10,7 @@ class Tennis extends Model
     use HasFactory;
     protected $fillable = ['tournament_name', 'tournament_point','number_of_players'];
 
-    public function tennis()
+    /*public function tennis()
     {
         return $this->hasManyThrough(
             '\App\Models\Points',
@@ -22,5 +22,5 @@ class Tennis extends Model
             'points_id'
 
         );
-    }
+    }*/
 }

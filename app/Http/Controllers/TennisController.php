@@ -42,10 +42,14 @@ class TennisController extends Controller
        if($tennis){
             return response()->json([
             'status' => 200,
-            'message' => 'Successfully',
+            'message' => 'Successful',
             'data' => $tennis,
             ]);
         }
+        return response()->json([
+            'status' => 500,
+            'message' => 'Can not see tournament'
+        ]);  
     }
 
     public function update(TennisRequest $request, Tennis $tennis, $id)
