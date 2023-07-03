@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+require __DIR__.'/helpers.php';
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;

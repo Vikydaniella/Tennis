@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TennisController;
 use App\Http\Controllers\PointsController;
 use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\FriendController;
 use App\Mail\FriendRequest;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,7 +16,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
-
 });
 
 Route::controller(TennisController::class)->group(function () {
@@ -42,9 +42,9 @@ Route::controller(ResultsController::class)->group(function () {
     Route::delete('results/{id}', 'destroy');
 }); 
 Route::controller(FriendController::class)->group(function () {
-    Route::get('/friendrequest', 'index');
-    Route::post('friendrequest', 'store');
-    Route::get('friendrequest/{id}', 'show');
-    Route::put('friendrequest/{id}', 'update');
-    Route::delete('friendrequest/{id}', 'destroy');
+    Route::get('friend', 'index');
+    Route::post('friend', 'store');
+    Route::get('friend/{id}', 'show');
+    Route::put('friend/{id}', 'update');
+    Route::delete('friend/{id}', 'destroy');
 });

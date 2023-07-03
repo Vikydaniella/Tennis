@@ -24,7 +24,8 @@ class StoreFriendRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=> 'required|string|max:20',
+                'email'=> 'required|string|max:40'
         ];
     }
 }
