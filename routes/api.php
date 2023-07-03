@@ -1,14 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\TennisController;
-use App\Http\Controllers\PointsController;
-use App\Http\Controllers\ResultsController;
 use App\Http\Controllers\FriendController;
-use App\Mail\FriendRequest;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\TennisController;
+use App\Http\Controllers\ResultsController;
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -26,14 +22,6 @@ Route::controller(TennisController::class)->group(function () {
     Route::delete('tennis/{id}', 'destroy');
 }); 
 
-Route::controller(PointsController::class)->group(function () {
-    Route::get('points', 'index');
-    Route::post('points', 'store');
-    Route::get('points/{id}', 'show');
-    Route::put('points/{id}', 'update');
-    Route::delete('points/{id}', 'destroy');
-}); 
-
 Route::controller(ResultsController::class)->group(function () {
     Route::get('results', 'index');
     Route::post('results', 'store');
@@ -43,8 +31,5 @@ Route::controller(ResultsController::class)->group(function () {
 }); 
 Route::controller(FriendController::class)->group(function () {
     Route::get('friend', 'index');
-    Route::post('friend', 'store');
-    Route::get('friend/{id}', 'show');
-    Route::put('friend/{id}', 'update');
-    Route::delete('friend/{id}', 'destroy');
+    Route::post('friend', 'inviteFriend');
 });

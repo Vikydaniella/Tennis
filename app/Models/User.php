@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Mail\Mailable;
 use Laravel\Passport\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
-use Hootlex\Friendships\Traits\Friendable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -14,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements JWTSubject
 
 {
-    use HasApiTokens, HasFactory, Notifiable, Friendable;
+    use HasApiTokens, HasFactory, Notifiable, Mailable;
 
     protected $table = 'users';
 

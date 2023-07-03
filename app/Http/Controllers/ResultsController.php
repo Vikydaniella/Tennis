@@ -21,7 +21,10 @@ class ResultsController extends Controller
     public function store(ResultsRequest $request)
     {
         $results = Results::create([
-            $request->id
+            'tournament_name' =>$request->tournament_name,
+            'player_one_score' =>$request->player_one_score,
+            'player_two_score' =>$request->player_two_score,
+            'winner' =>$request->winner,
         ]);
         if ($results){
             return response()->json([
@@ -38,7 +41,7 @@ class ResultsController extends Controller
 
     public function show(Results $results, $id)
     {
-        $results = Results::findOrFail($id);
+        $results = Results::find($id);
         if($results){
              return response()->json([
              'status' => 200,
@@ -50,10 +53,13 @@ class ResultsController extends Controller
 
     public function update(ResultsRequest $request, Results $results, $id)
     {
-        $results = Results::findOrFail($id);
+        $results = Results::find($id);
         if($results){
             $results->update([
-                $request->id
+            'tournament_name' =>$request->tournament_name,
+            'player_one_score' =>$request->player_one_score,
+            'player_two_score' =>$request->player_two_score,
+            'winner' =>$request->winner,
             ]);
             return response()->json([
             'status' => 200,
@@ -69,7 +75,7 @@ class ResultsController extends Controller
 
     public function destroy(Results $results, $id)
     {
-        $results = Results::findOrFail($id);
+        $results = Results::find($id);
         if ($results){
             $results->delete();
             return response()->json([

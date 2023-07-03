@@ -20,9 +20,13 @@ class TennisController extends Controller
 
     public function store(TennisRequest $request)
     {   
+
         $tennis = Tennis::create([
-            $request->id
+            'tournament_name' =>$request->tournament_name,
+            'tournament_point' =>$request->tournament_point,
+            'number_of_players' => $request->number_of_players
         ]);
+
         if ($tennis){
             return response()->json([
                 'status' => 200,
@@ -38,7 +42,7 @@ class TennisController extends Controller
 
     public function show(Tennis $tennis, $id)
     {
-       $tennis = Tennis::findOrFail($id);
+       $tennis = Tennis::find($id);
        if($tennis){
             return response()->json([
             'status' => 200,
@@ -52,12 +56,14 @@ class TennisController extends Controller
         ]);  
     }
 
-    public function update(TennisRequest $request, Tennis $tennis, $id)
+    public function update(TennisRequest $request)
     {
-        $tennis = Tennis::findOrFail($id);
+        $tennis = Tennis::find($id);
         if($tennis){
             $tennis->update([
-                $request->id
+            'tournament_name' =>$request->tournament_name,
+            'tournament_point' =>$request->tournament_point,
+            'number_of_players' => $request->number_of_players
             ]);
             return response()->json([
             'status' => 200,
@@ -73,7 +79,7 @@ class TennisController extends Controller
 
     public function destroy(Tennis $tennis, $id)
     {
-        $tennis = Tennis::findOrFail($id);
+        $tennis = Tennis::find($id);
         if ($tennis){
             $tennis->delete();
             return response()->json([
