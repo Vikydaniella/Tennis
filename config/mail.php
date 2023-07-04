@@ -7,11 +7,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'host' => 'sandbox.smtp.mailtrap.io',
+            'port' => 2525,
+            'encryption' => 'tls',
+            'username' => '7046c94ddc1b73',
+            'password' => 'e3affe19a7e31e',
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -63,8 +63,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => 'victoriaoderinde@gmail.com',
+        'name' => 'Victoria',
     ],
 
 
@@ -77,9 +77,9 @@ return [
     ],
 
     
-    'mailers' => [
+    /*'mailers' => [
             'mailtrap' => [
                 'transport' => 'mailtrap'
             ],
-    ]
+    ]*/
 ];

@@ -175,9 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-        'providers' => append_config(array(
-            'Hootlex\Friendships\FriendshipsServiceProvider'
-        )),
     ],
 
     /*

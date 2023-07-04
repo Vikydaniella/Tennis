@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\FriendRequest;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FriendController;
@@ -29,7 +31,8 @@ Route::controller(ResultsController::class)->group(function () {
     Route::put('results/{id}', 'update');
     Route::delete('results/{id}', 'destroy');
 }); 
+
 Route::controller(FriendController::class)->group(function () {
     Route::get('friend', 'index');
-    Route::post('friend', 'inviteFriend');
+    Route::get('friend/{id}', 'inviteFriend');
 });

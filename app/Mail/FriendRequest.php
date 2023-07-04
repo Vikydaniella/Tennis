@@ -2,10 +2,10 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
 
 
 class FriendRequest extends Mailable
@@ -21,9 +21,8 @@ class FriendRequest extends Mailable
 
     public function build()
     {
-        return $this->from($this->user->email)
-                    ->to('Auth::user()->emai')
-                    ->view('mail.blade.php');
-                    
+        return $this->from('v.oderinde@yahoo.com')
+                    ->subject('Tournament Invitation')
+                    ->view('friend');                
     }
 }
