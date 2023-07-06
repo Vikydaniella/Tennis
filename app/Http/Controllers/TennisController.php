@@ -8,11 +8,6 @@ use App\Http\Resources\TennisResource;
 
 class TennisController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
-
     public function index()
     {
         return TennisResource::collection(Tennis::all());

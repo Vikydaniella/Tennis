@@ -9,30 +9,30 @@ use App\Http\Controllers\TennisController;
 use App\Http\Controllers\ResultsController;
 
 
-Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
+Route::group(['middleware' => ['api']],function () {
+    Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
 });
 
-Route::controller(TennisController::class)->group(function () {
-    Route::get('tennis', 'index');
-    Route::post('tennis', 'store');
-    Route::get('tennis/{id}', 'show');
-    Route::put('tennis/{id}', 'update');
-    Route::delete('tennis/{id}', 'destroy');
+Route::group(['middleware' => ['api']],function () {
+    Route::get('tennis', 'TennisController@index');
+    Route::post('tennis', 'TennisController@store');
+    Route::get('tennis/{id}', 'TennisController@show');
+    Route::put('tennis/{id}', 'TennisController@update');
+    Route::delete('tennis/{id}', 'TennisController@destroy');
 }); 
 
-Route::controller(ResultsController::class)->group(function () {
-    Route::get('results', 'index');
-    Route::post('results', 'store');
-    Route::get('results/{id}', 'show');
-    Route::put('results/{id}', 'update');
-    Route::delete('results/{id}', 'destroy');
+Route::group(['middleware' => ['api']], function() {
+    Route::get('results', 'ResultsController@index');
+    Route::post('results', 'ResultsController@store');
+    Route::get('results/{id}', 'ResultsController@show');
+    Route::put('results/{id}', 'ResultsController@update');
+    Route::delete('results/{id}', 'ResultsController@destroy');
 }); 
 
-Route::controller(FriendController::class)->group(function () {
-    Route::get('friend', 'index');
-    Route::get('friend/{id}', 'inviteFriend');
+Route::group(['middleware' => ['api']],function () {
+    Route::get('friend', 'FriendController@index');
+    Route::get('friend/{id}', 'FriendController@inviteFriend');
 });

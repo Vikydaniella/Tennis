@@ -3,6 +3,7 @@
 namespace App\Models;
 
 //use Illuminate\Mail\Mailable;
+use App\Models\Tennis;
 use Laravel\Passport\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -40,5 +41,10 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function id()
+    {
+        return $this->hasOne('App\Tennis', 'foreign_key', 'local_key');
     }
 }

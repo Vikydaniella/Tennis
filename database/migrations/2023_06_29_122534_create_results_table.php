@@ -15,10 +15,15 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->string('tournament_name');
+            $table->string('tennis_id');
             $table->integer('player_one_score');
             $table->integer('player_two_score');
             $table->string('winner');
+            $table->unsignedBigInteger('tennis_creator_id');
+            $table->foreign('tennis_creator_id')
+                ->references('id')
+                ->on('tennis')
+                ->cascade('delete');
             $table->timestamps();
         });
     }

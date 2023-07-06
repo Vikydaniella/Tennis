@@ -10,17 +10,8 @@ class Tennis extends Model
     use HasFactory;
     protected $fillable = ['tournament_name', 'tournament_point','number_of_players'];
 
-    /*public function tennis()
+    public function user()
     {
-        return $this->hasManyThrough(
-            '\App\Models\Points',
-            '\App\Models\Results',
-            '\App\Models\TennisPointsResults',
-            'tennis_id',
-            'id',
-            'id',
-            'points_id'
-
-        );
-    }*/
+        return $this->belongsTo('App\User');
+    }
 }

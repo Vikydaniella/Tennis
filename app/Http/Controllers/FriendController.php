@@ -18,19 +18,17 @@ class FriendController extends Controller
 
    public function inviteFriend(FriendshipRequest $request, int $id)
     {
+
         $user = $user = User::find($id);
         $user = [
             'title' => 'Tournament Invitation',
             'body' => 'Hi there, could you join my tournament. Let us play.'
             ];
-            
-        //Mail::to($request->user())->send(new FriendRequest($user));
-        
-        //return 'Invitation sent';*/
-        //$user = Auth::user();
-        //echo $user->email;
 
         Mail::to($request->user())->send(new FriendRequest($user));
-        return 'Invitation sent!';
+        return response()->json([
+            'status' => 500,
+            'message' => 'Invitation sent'
+        ]);
     }
 }

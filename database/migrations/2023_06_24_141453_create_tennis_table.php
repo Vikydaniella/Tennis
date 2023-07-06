@@ -13,6 +13,11 @@ class CreateTennisTable extends Migration
             $table->string('tournament_name');
             $table->integer('tournament_point');
             $table->integer('number_of_players');
+            $table->unsignedBigInteger('tennis_id');
+            $table->foreign('tennis_id')
+                ->references('id')
+                ->on('users')
+                ->cascade('delete');
             $table->timestamps();
         });
     }
