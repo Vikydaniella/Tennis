@@ -18,7 +18,8 @@ class TennisRequest extends FormRequest
         return [
             'tournament_name'=> 'required|string|max:20',
             'tournament_point'=> 'required|integer|max:20',
-            'number_of_players'=> 'required|integer|max:2'
+            'number_of_players'=> 'required|integer|max:2',
+            'user_id'=> 'required|integer|max:10'
         ];
     }
 }

@@ -45,6 +45,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function id()
     {
-        return $this->hasOne('App\Tennis', 'foreign_key', 'local_key');
+        return $this->hasOne('App\Tennis', 'App\Results', 'foreign_key');
     }
 }

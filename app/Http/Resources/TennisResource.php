@@ -15,6 +15,7 @@ class TennisResource extends JsonResource
                 'tournament_name'=> $this->tournament_name,
                 'tournament_point'=> $this->tournament_point,
                 'number_of_players'=> $this->number_of_players,
+                'user_id'=>$this->user_id,
                 'created_at'=> $this->created_at,
                 'updated_at'=> $this->updated_at
             ]];

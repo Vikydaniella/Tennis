@@ -9,4 +9,9 @@ class Results extends Model
 {
     use HasFactory;
     protected $fillable = ['player_one_score','player_two_score', 'winner'];
+
+    public function user_id()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
