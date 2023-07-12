@@ -12,10 +12,11 @@ class ResultsResource extends JsonResource
             'id' => (string)$this->id,
             'type' => 'Results',
             'attributes'=> [
-                'tournament_name'=> $this->tournament_name,
+                'tournament_id'=> $this->tournament_name,
                 'player_one_score'=> $this->player_one_score,
                 'player_two_score'=> $this->player_two_score,
                 'winner'=> $this->winner,
+                'user_id'=> $this->user_id,
                 'created_at'=> $this->created_at,
                 'updated_at'=> $this->updated_at
             ]];

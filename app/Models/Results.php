@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Results extends Model
 {
     use HasFactory;
-    protected $fillable = ['player_one_score','player_two_score', 'winner'];
+    protected $fillable = ['tournament_id','player_one_score','player_two_score', 'winner', 'user_id'];
 
     public function user_id()
     {

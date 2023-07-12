@@ -26,9 +26,9 @@ Route::group(['middleware' => ['api']],function () {
 Route::group(['middleware' => ['api']], function() {
     Route::get('results', [ResultsController::class, 'index']);
     Route::post('results', [ResultsController::class, 'store']);
-    Route::get('results/{id}', [ResultsController::class, 'show']);
-    Route::put('results/{id}', [ResultsController::class, 'update']);
-    Route::delete('results/{id}', [ResultsController::class, 'destroy']);
+    Route::get('result/{id}', [ResultsController::class, 'show']);
+    Route::put('result/{id}', [ResultsController::class, 'update']);
+    Route::delete('result/{id}', [ResultsController::class, 'destroy']);
 }); 
 
 Route::group(['middleware' => ['api']],function () {

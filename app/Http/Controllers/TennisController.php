@@ -14,36 +14,25 @@ class TennisController extends Controller
         return TennisResource::collection(Tennis::all());
     }
 
-    public function store(TennisRequest $request, Tennis $user_id)
+    public function store(TennisRequest $request)
     {   
-        $tennis = Tennis::find($user_id);
-
-        if ($tennis !== null && Auth::user()->id === $tennis->user_id) {
-        $tennis = Tennis::create([
-        'tournament_name' => $request->tournament_name,
-        'tournament_point' => $request->tournament_point,
-        'number_of_players' => $request->number_of_players,
-        'user_id' => $request->user_id
-    ]);
-
+        $tennis = Tennis::firstOrCreate([
+            'tournament_name' => $request->tournament_name,
+            'tournament_point' => $request->tournament_point,
+            'number_of_players' => $request->number_of_players,
+            'user_id' => $request->user()->id
+        ]);
         if ($tennis) {
-        return response()->json([
-            'status' => 200,
-            'message' => 'Tournament created successfully',
-            'data' => $tennis
-        ]);
-    } else {
-        return response()->json([
-            'status' => 500,
-            'message' => 'Can not create tournament'
-        ]);
-    }
-} else {
-    return response()->json([
-        'status' => 403,
-        'message' => 'You cannot create a tournament.'
-    ]);
-}
+            return response()->json([
+                'status' => 200,
+                'message' => 'Tournament created successfully',
+                'data' => $tennis
+            ]);
+        }  
+            return response()->json([
+                'status' => 500,
+                'message' => 'Can not create tournament'
+            ]);
     }
     public function show(Tennis $tennis, $id)
     {
@@ -61,62 +50,43 @@ class TennisController extends Controller
         ]);  
     }
 
-    public function update(TennisRequest $request, int $id)
+    public function update(TennisRequest $request, $id)
     {
-        $tennis = Tennis::find($id);
-
-        if ($tennis !== null && Auth::user()->id === $tennis->user_id) {
+       $tennis = Tennis::find($id);
+        if($tennis){
         $tennis->update([
-        'tournament_name' => $request->tournament_name,
-        'tournament_point' => $request->tournament_point,
-        'number_of_players' => $request->number_of_players,
-        'user_id' => $request->user_id
-    ]);
-
-        if ($tennis) {
-        return response()->json([
-            'status' => 200,
-            'message' => 'Tournament updated successfully',
-            'data' => $tennis
+            'tournament_name' => $request->tournament_name,
+            'tournament_point' => $request->tournament_point,
+            'number_of_players' => $request->number_of_players,
+            'user_id' => $request->user()->id
         ]);
-    } else {
-        return response()->json([
-            'status' => 500,
-            'message' => 'Can not update tournament'
-        ]);
-    }
-} else {
-    return response()->json([
-        'status' => 403,
-        'message' => 'You cannot update a tournament.'
-    ]);
-}
+            return response()->json([
+                'status' => 200,
+                'message' => 'Tournament updated successfully',
+                'data' => $tennis
+            ]);
+        }  
+            return response()->json([
+                'status' => 500,
+                'message' => 'Can not update tournament'
+            ]);
 
 }
 
     public function destroy(Tennis $tennis, $id)
     {
-        $tennis = Tennis::find($id);
-
-        if ($tennis !== null && Auth::user()->id === $tennis->user_id) {
+         $tennis = Tennis::find($id);
+        if ($tennis){
         $tennis->delete();
-        if ($tennis) {
-        return response()->json([
-            'status' => 200,
-            'message' => 'Tournament deleted successfully',
-            'data' => $tennis
-        ]);
-    } else {
-        return response()->json([
-            'status' => 500,
-            'message' => 'Can not delete tournament'
-        ]);
+            return response()->json([
+                'status' => 200,
+                'message' => 'Tournament updated successfully',
+                'data' => $tennis
+            ]);
+        }  
+            return response()->json([
+                'status' => 500,
+                'message' => 'Can not update tournament'
+            ]);
     }
-} else {
-    return response()->json([
-        'status' => 403,
-        'message' => 'You cannot delete a tournament.'
-    ]);
-    }
-}
 }
